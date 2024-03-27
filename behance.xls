@@ -1,0 +1,39 @@
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+   <xsl:output method="html" indent="yes"/>
+   <xsl:template match="/">
+      <html>
+         <head>
+            <title>Behance Projects</title>
+         </head>
+         <body>
+            <h1>Behance Projects</h1>
+            <xsl:apply-templates select="//user"/>
+         </body>
+      </html>
+   </xsl:template>
+   <xsl:template match="user">
+      <div style="background-color: #f2f2f2; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px;">
+         <h2>
+            <xsl:value-of select="name"/> (<xsl:value-of select="username"/>)</h2>
+         <ul>
+            <xsl:apply-templates select="projects/project"/>
+         </ul>
+      </div>
+   </xsl:template>
+   <xsl:template match="project">
+      <li>
+         <h3>
+            <xsl:value-of select="title"/>
+         </h3>
+         <p>
+            <xsl:value-of select="description"/>
+         </p>
+         <p>Date: <xsl:value-of select="date"/>
+         </p>
+         <p>Likes: <xsl:value-of select="likes"/>
+         </p>
+         <p>Comments: <xsl:value-of select="comments"/>
+         </p>
+      </li>
+   </xsl:template>
+</xsl:stylesheet>
